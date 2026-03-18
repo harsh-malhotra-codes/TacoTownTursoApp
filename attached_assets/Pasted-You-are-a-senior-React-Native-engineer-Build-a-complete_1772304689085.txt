@@ -1,0 +1,114 @@
+You are a senior React Native engineer.
+
+Build a complete production-ready Expo React Native mobile application called **TacoTown Owner App**.
+
+This is NOT a customer app.
+This is a restaurant kitchen dashboard used by the restaurant owner and workers to manage incoming food orders.
+
+Backend:
+I already have a working Node.js backend deployed on Render.
+The API returns orders in JSON format from a Turso database.
+
+Base API URL:
+https://taco-town-qqro.onrender.com
+
+Endpoints:
+GET /orders → returns all active orders
+DELETE /orders/:id → removes an order after completion
+PUT /orders/:id/status → updates order status
+PUT /orders/:id/worker → saves the worker/chef name
+
+Real Order JSON example:
+{
+"id": 7,
+"customerName": "Harsh",
+"phone": "7889848844",
+"address": "House no. 331",
+"items": [
+{"name":"Veg Taco","price":100,"quantity":2}
+],
+"totalPrice": 200,
+"paymentMethod": "Cash",
+"status": "pending",
+"createdAt": "2026-02-28T06:22:46"
+}
+
+APP REQUIREMENTS:
+
+1. Dashboard Screen
+
+* Fetch orders from GET /orders
+* Auto refresh every 5 seconds
+* Scrollable list (FlatList)
+* Each order card shows:
+  • Customer name
+  • Total price
+  • Time
+  • Current status badge
+  • Right side button: "Prepare"
+
+2. Order Details Screen
+   When user taps an order:
+   Show full information:
+
+* Customer name
+* Phone
+* Address
+* Order items list
+* Quantity and price
+* Total price
+* Payment method
+
+Add a text input:
+"Prepared By (Worker Name)"
+
+Buttons:
+[Start Preparing]
+→ calls PUT /orders/:id/status with "preparing"
+
+[Done]
+→ calls PUT /orders/:id/status with "completed"
+
+[Delete Order]
+→ calls DELETE /orders/:id
+
+After Done or Delete → navigate back to dashboard and refresh list.
+
+3. UI Design (IMPORTANT)
+   Theme must be:
+
+* Black background (#0B0B0B)
+* Gold/Yellow accent (#FFC107)
+* White text
+* Rounded cards
+* Large readable buttons
+* Kitchen friendly (big tap areas)
+
+4. Notifications Logic
+   If a new order appears in the list (id not seen before), highlight the card in yellow for 3 seconds.
+
+5. Tech Requirements
+   Use:
+   Expo
+   React Navigation
+   Axios
+   No Firebase
+   No Supabase
+   No Redux (use Context API only)
+
+6. Code Requirements
+   Provide:
+   • Full App.js
+   • Navigation setup
+   • Dashboard screen
+   • OrderDetails screen
+   • API service file (api.js)
+   • Styling file (theme.js)
+
+7. Important:
+   Handle network errors gracefully.
+   Show "No Orders" if empty.
+   Add loading indicator while fetching.
+
+Return the full working code.
+Do not give explanation, only the complete project code.
